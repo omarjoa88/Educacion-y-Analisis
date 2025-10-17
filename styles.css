@@ -23,7 +23,7 @@ body {
 }
 
 .contenedor {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     max-width: 1200px;
     padding: 20px 0;
@@ -112,26 +112,95 @@ h2 {
 /* -------------------------------------- */
 /* TARJETAS DE PROYECTOS */
 /* -------------------------------------- */
+/* ========== Carrusel horizontal de proyectos ========== */
+.proyectos-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-top: 3px;
+}
+
+/* Fila desplazable */
+.proyectos-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity; /* desplazamiento suave */
+  padding: 1px 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Personaliza la barra de desplazamiento */
+.proyectos-track::-webkit-scrollbar { height: 8px; }
+.proyectos-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 8px; }
+.proyectos-track { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.15) transparent; }
+
+/* Tarjetas de proyecto */
 .proyecto-tarjeta {
-    background: var(--color-texto-claro);
-    border-left: 5px solid var(--color-acento); /* Borde acentuado */
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
+  flex: 0 0 calc(80% - 15px); /* 2 tarjetas visibles en escritorio */
+  scroll-snap-align: start;
+  background: var(--color-texto-claro);
+  border-left: 5px solid var(--color-acento);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 280px;
 }
 
+/* Efecto al pasar el mouse */
 .proyecto-tarjeta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
-.proyecto-tarjeta h3 {
-    color: var(--color-acento);
-    margin-top: 0;
-    font-size: 1.5em;
+/* Botones de navegación */
+.proy-arrow {
+  background: var(--color-principal);
+  color: var(--color-texto-claro);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  transition: opacity 0.2s, transform 0.15s;
 }
+
+.proy-arrow:active { transform: scale(0.95); }
+.proy-arrow[disabled] { opacity: 0.4; cursor: default; }
+
+/* Mostrar flechas con hover (opcional) */
+.proy-arrow { opacity: 0.6; }
+.proyectos-wrapper:hover .proy-arrow { opacity: 1; }
+
+/* ========== Responsivo ========== */
+
+/* En pantallas grandes: 2 visibles */
+@media (min-width: 900px) {
+  .proyecto-tarjeta {
+    flex: 0 0 calc(50% - 15px);
+  }
+}
+
+/* En móviles: 1 tarjeta visible (centrada y más ancha) */
+@media (max-width: 899px) {
+  .proyecto-tarjeta {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+  .proy-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+
 
 /* Diseño responsivo básico para las tarjetas */
 .seccion-proyectos .contenedor {

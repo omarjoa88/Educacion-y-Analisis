@@ -6,6 +6,67 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const track = document.querySelector('.proyectos-track');
+  const prev = document.querySelector('.proy-prev');
+  const next = document.querySelector('.proy-next');
+
+  if (!track) return;
+
+  // cantidad de desplazamiento: ancho de una tarjeta más gap
+  function getScrollAmount() {
+    const card = track.querySelector('.proyecto-tarjeta');
+    if (!card) return track.clientWidth * 0.8;
+    const style = window.getComputedStyle(track);
+    const gap = parseInt(style.columnGap || style.gap || 30, 10) || 30;
+    return Math.round(card.getBoundingClientRect().width + gap);
+  }
+
+  prev.addEventListener('click', () => {
+    track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+  });
+
+  next.addEventListener('click', () => {
+    track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+  });
+
+  // Habilitar arrastrar con el mouse (drag-to-scroll)
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('pointerdown', (e) => {
+    isDown = true;
+    track.setPointerCapture(e.pointerId);
+    startX = e.clientX;
+    scrollLeft = track.scrollLeft;
+    track.style.cursor = 'grabbing';
+  });
+  track.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    track.scrollLeft = scrollLeft - dx;
+  });
+  track.addEventListener('pointerup', (e) => {
+    isDown = false;
+    track.style.cursor = '';
+  });
+  track.addEventListener('pointerleave', () => { isDown = false; track.style.cursor = ''; });
+
+  // Habilitar navegación por teclado (flechas izquierda/derecha)
+  track.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' }); e.preventDefault(); }
+    if (e.key === 'ArrowLeft')  { track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' }); e.preventDefault(); }
+  });
+
+  // Desactivar flechas si está al inicio o al final
+  function updateButtons() {
+    prev.disabled = track.scrollLeft <= 10;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+  }
+  track.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+});
+</script>
 <body>
     
     <p>ver la página en https://omarjoa88.github.io/Educacion-y-Analisis/</p>
@@ -28,7 +89,7 @@
         <div class="contenedor">
             <h2>👋 Hola, Soy Omar González</h2>
             <p>
-                Este es un proyecto pensado en la publicación de unos analisis propios en el campo de la educación, los temas que se desarrollan estan basado en datos publicos de diferentes fuentes de información como es el SNIES, ICFES entre otros.
+                Este es un proyecto pensado en la publicación de unos analisis propios en el campo de la educación, los temas que se desarrollan estan basado en datos publicos de diferentes fuentes de información como es el SNIES, ICFES, entre otros.
                 Todos los analisis se desarrolladon en Python, algunos informes tambien usan el scraping de diferentes páginas web. 
                 Cualquier dondación a este proyecto y comentarios de interes si desea desarrollar este tipo de estudios en su institución podemos hablarlo por medio interno en mi perfil de linked.
             </p>
@@ -39,19 +100,37 @@
         <div class="contenedor">
             <h2>🛠️ Mis Proyectos</h2>
 
-            <div class="proyecto-tarjeta">
-                <h3>Calculadora Web con Flask</h3>
-                <p>Una aplicación simple de calculadora que demuestra la integración de Python (Flask) con la interfaz de usuario. Manejo de rutas y lógica *backend*.</p>
-                <a href="#" class="boton">Ver en GitHub</a>
-            </div>
+            <div class="proyectos-wrapper">
+                <button class="proy-arrow proy-prev" aria-label="Anterior">&lt;</button>
 
-            <div class="proyecto-tarjeta">
-                <h3>Analizador de Datos con Pandas</h3>
-                <p>Un script de Python que usa la librería Pandas para procesar un conjunto de datos. El resultado se muestra en una tabla HTML estática.</p>
-                <a href="#" class="boton">Ver Demostración</a>
-            </div>
+                    <div class="proyectos-track" tabindex="0" aria-label="Lista de proyectos">
+                        <article class="proyecto-tarjeta">
+                        <h3>Tendencias laborales</h3>
+                        <p>Uno de los problemas actuales de los estudiantes egresados es la vinculación laboral... hacemos una búsqueda y generamos un análisis de coincidencias.</p>
+                        <a href="https://github.com/omarjoa88" class="boton" target="_blank" rel="noopener noreferrer">Ver en GitHub</a>
+                        </article>
 
+                        <article class="proyecto-tarjeta">
+                        <h3>Análisis de resultados Saber Pro</h3>
+                        <p>Análisis relacionados con los resultados de la prueba Saber Pro... exploraremos diferentes informes con respecto a los datos publicados.</p>
+                        <a href="#" class="boton">Ver Demostración</a>
+                        </article>
+
+                        <article class="proyecto-tarjeta">
+                        <h3>SNIES</h3>
+                        <p>Análisis correspondientes a datos publicados en el SNIES.</p>
+                        <a href="#" class="boton">Ver Demostración</a>
+                        </article>
+
+                        <!-- añade más .proyecto-tarjeta si quieres -->
+                    </div>
+
+                <button class="proy-arrow proy-next" aria-label="Siguiente">&gt;</button>
             </div>
+            <div class="contenedor">
+                <p>Si te gusta este tipode proyectos y quieres apoyar este tipo de analisis puedes hacer tus donaciones para esto me puede escribir por linkedin, por este medio tambien podemos cuadrar proyectos privados que te interesen.</p>
+            </div>
+        </div>
     </section>
 
     <footer>
