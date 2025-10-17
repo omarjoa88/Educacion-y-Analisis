@@ -1,0 +1,171 @@
+/* -------------------------------------- */
+/* VARIABLES DE COLOR */
+/* -------------------------------------- */
+:root {
+    --color-principal: #2c3e50; /* Azul Profundo */
+    --color-acento: #1abc9c;    /* Verde Turquesa */
+    --color-secundario: #3498db; /* Azul Claro/Medio */
+    --color-fondo-claro: #f4f7f6; /* Gris Claro (fondo de página) */
+    --color-texto-claro: #ffffff;
+    --color-texto-oscuro: #333333;
+}
+
+/* -------------------------------------- */
+/* ESTILOS GENERALES Y TIPOGRAFÍA */
+/* -------------------------------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo-claro);
+    color: var(--color-texto-oscuro);
+    line-height: 1.6;
+}
+
+.contenedor {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+/* -------------------------------------- */
+/* CABECERA (HEADER) */
+/* -------------------------------------- */
+header {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    padding: 10px 0;
+    /* fijar encabezado*/
+    position: fixed; /*hace que no se mueva con el scroll*/
+    top: 0;/*lo fija en la parte superior*//**/
+    width: 100%;/*asegurar todo el ancho de la ventana*/
+    z-index: 1000;/*que este siempre arriba del contenido*/
+    border-bottom: 5px solid var(--color-acento);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    float: left;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 25px;
+}
+
+header nav a {
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: var(--color-acento); /* Hover en turquesa */
+}
+
+/* Para limpiar los floats */
+.contenedor::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* -------------------------------------- */
+/* SECCIONES Y TÍTULOS */
+/* -------------------------------------- */
+.seccion-principal {
+    background-color: var(--color-texto-claro); /* Fondo blanco */
+    padding: 80px 0;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.seccion-proyectos {
+    padding: 60px 0;
+    background-color: var(--color-fondo-claro);
+}
+
+h2 {
+    color: var(--color-principal);
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.2em;
+    border-bottom: 3px solid var(--color-acento); /* Subrayado de acento */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* -------------------------------------- */
+/* TARJETAS DE PROYECTOS */
+/* -------------------------------------- */
+.proyecto-tarjeta {
+    background: var(--color-texto-claro);
+    border-left: 5px solid var(--color-acento); /* Borde acentuado */
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.proyecto-tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.proyecto-tarjeta h3 {
+    color: var(--color-acento);
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+/* Diseño responsivo básico para las tarjetas */
+.seccion-proyectos .contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* -------------------------------------- */
+/* BOTONES */
+/* -------------------------------------- */
+.boton {
+    display: inline-block;
+    background: var(--color-acento); /* Turquesa */
+    color: var(--color-texto-claro);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton:hover {
+    background: var(--color-principal); /* Azul Profundo en hover */
+}
+
+/* -------------------------------------- */
+/* PIE DE PÁGINA (FOOTER) */
+/* -------------------------------------- */
+footer {
+    background-color: var(--color-principal);
+    color: var(--color-texto-claro);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
