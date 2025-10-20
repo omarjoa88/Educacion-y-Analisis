@@ -83,6 +83,93 @@ header nav a:hover {
     display: table;
     clear: both;
 }
+/* ========== Menú principal ========== */
+header nav ul.menu-principal {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul.menu-principal li {
+  position: relative;
+}
+
+header nav a {
+  text-decoration: none;
+  color: var(--color-texto-claro);
+  font-weight: 500;
+  padding: 6px 10px;
+  transition: color 0.2s, background 0.2s;
+}
+
+header nav a:hover {
+  color: var(--color-acento);
+}
+
+/* ========== Dropdown ========== */
+.dropdown .dropbtn {
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Contenedor del menú desplegable */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--color-principal);
+  min-width: 180px;
+  border-radius: 8px;
+  top: 100%; /* justo debajo del botón principal */
+  left: 0;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Enlaces dentro del dropdown */
+.dropdown-content li {
+  list-style: none;
+}
+
+.dropdown-content a {
+  display: block;
+  color: var(--color-texto-claro);
+  padding: 10px 16px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--color-acento);
+  color: #fff;
+}
+
+/* Mostrar el menú al pasar el mouse */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Ajustes para móviles: al hacer clic */
+@media (max-width: 800px) {
+  .menu-principal {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    min-width: unset;
+    display: none;
+  }
+
+  .dropdown.open .dropdown-content {
+    display: block;
+  }
+}
 
 /* -------------------------------------- */
 /* SECCIONES Y TÍTULOS */

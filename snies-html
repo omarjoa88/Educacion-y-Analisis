@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNIES | Educación & Análisis</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- ======== HEADER ======== -->
+  <header>
+    <div class="contenedor">
+      <h1>Educación & Análisis</h1>
+      <nav>
+        <ul class="menu-principal">
+          <li><a href="index.html#acerca">Acerca de Mí</a></li>
+          <li class="dropdown">
+            <a href="index.html#proyectos" class="dropbtn">Proyectos ▾</a>
+            <ul class="dropdown-content">
+              <li><a href="saberpro.html">Saber Pro</a></li>
+              <li><a href="tendencias.html">Tendencias Laborales</a></li>
+              <li><a href="snies-html">SNIES</a></li>
+            </ul>
+          </li>
+          <li><a href="mailto:tu.email@ejemplo.com">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======== CONTENIDO PRINCIPAL ======== -->
+  <main class="contenedor">
+    <section id="SNIES">
+      <h2>📊 Análisis de Resultados Saber Pro</h2>
+      <p>
+        En esta sección encontrarás los diferentes análisis y visualizaciones relacionadas con los resultados de la prueba <strong>Saber Pro</strong>. 
+        Aquí se presentan informes comparativos, modelos de valor agregado y tendencias observadas en los resultados institucionales.
+      </p>
+
+      <!-- Ejemplo de subsecciones -->
+      <article class="proyecto-tarjeta">
+        <h3>Modelo de Valor Agregado</h3>
+        <p>Estimación del valor agregado institucional a partir de los resultados en Lectura Crítica, Razonamiento Cuantitativo, Inglés y Competencias Ciudadanas.</p>
+        <a href="#" class="boton">Ver Informe</a>
+      </article>
+
+      <article class="proyecto-tarjeta">
+        <h3>Análisis de Cohortes</h3>
+        <p>Comparación entre cohortes 2023-1, 2023-2, 2024-1, 2024-2 y 2025-1. Se incluyen baremos, promedios y evolución de resultados.</p>
+        <a href="#" class="boton">Ver Resultados</a>
+      </article>
+    </section>
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer>
+    <p>&copy; 2025 Educación & Análisis | Desarrollado por Omar González</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -76,9 +76,17 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="contenedor">
             <h1>Educación & Análisis</h1>
             <nav>
-                <ul>
+                <ul class="menu-principal">
                     <li><a href="#acerca">Acerca de Mí</a></li>
-                    <li><a href="#proyectos">Proyectos</a></li>
+                    <!--Menpu desplegable-->
+                    <li class="dropdown">
+                      <a href="#proyectos" class="dropbtn">Proyectos</a>
+                      <ul class="dropdown-content">
+                        <li><a href="saberpro.html">Saber Pro</a></li>
+                        <li><a href="tendencias.html">Tendencias Laborales</a></li>
+                        <li><a href="snies-html">SNIES</a></li>
+                      </ul>
+                    </li>
                     <li><a href="mailto:tu.email@ejemplo.com">Contacto</a></li>
                 </ul>
             </nav>
